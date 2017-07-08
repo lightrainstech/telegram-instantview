@@ -1,0 +1,13 @@
+# Telegram instant view template for blog articles. 
+
+?exists: /html/body[@id="page-blog"]
+
+title: //h1[@id="title"]
+subtitle: //h2[@class="post-subtitle"]
+author: //a[@id="tgiv_author"]
+author_url: //a[@id="tgiv_author"]
+body:  //article
+cover: //img[@id="tgiv_cover"]
+description: //h2[@class="post-subtitle"]
+
+channel: @lightrains
