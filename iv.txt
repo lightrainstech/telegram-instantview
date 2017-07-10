@@ -1,5 +1,3 @@
-# Telegram instant view template for blog articles. 
-
 ?exists: /html/body[@id="page-blog"]
 
 title: //h1[@id="title"]
@@ -11,3 +9,35 @@ cover: //img[@id="tgiv_cover"]
 description: //h2[@class="post-subtitle"]
 
 channel: @lightrains
+
+@remove: $body//script
+@remove: $body//style
+
+<article>: $body
+@simplify
+body!
+
+?true
+$head: /html/head
+$meta: $head/meta
+
+
+@unsupported: $body//embed
+@unsupported: $body//object
+@unsupported: $body//table
+@unsupported: $body//canvas
+
+
+
+# Basic information can be usualy obtained from Open Graph or Twitter Cards metatags.
+title: $meta[@name="twitter:title"]/@content[normalize-space()]
+title: $meta[@name="og:title"]/@content[normalize-space()]
+title: $head/title[normalize-space()]
+
+description: $meta[@name="twitter:description"]/@content[normalize-space()]
+description: $meta[@name="og:description"]/@content[normalize-space()]
+description: $body/p[normalize-space()]
+description: $meta[@name="description"]/@content[normalize-space()]
+
+image_url: $meta[@name="twitter:image"]/@content[normalize-space()]
+image_url: $meta[@name="og:image"]/@content[normalize-space()]
